@@ -25,7 +25,7 @@ from datetime import datetime
 class Tasks(Hpe3ParBaseAction):
     def run(self):
         # Get the tasks
-        allTasks = self.creds.getAllTasks()
+        allTasks = self.client.getAllTasks()
 
         tasks = allTasks['members']
 
