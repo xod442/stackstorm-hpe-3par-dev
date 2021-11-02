@@ -1,7 +1,7 @@
 ---
-ref: hpe3Par
-name: hpe3Par
-description: HPE hpe3Par Integration Pack
+ref: hpe3par
+name: hpe3par
+description: HPE 3Par Integration Pack
 keywords:
   - HPE 3Par
   - Alletra
