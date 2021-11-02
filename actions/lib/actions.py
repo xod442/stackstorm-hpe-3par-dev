@@ -20,13 +20,13 @@
 
 import pymongo
 from pymongo import MongoClient
-from nimbleclient import NimOSClient
+from hpe3parclient import client, exceptions
 from datetime import datetime
 from st2common.runners.base_action import Action
 
-class HpeNimbleBaseAction(Action):
+class Hpe3ParBaseAction(Action):
     def __init__(self,config):
-        super(HpeNimbleBaseAction, self).__init__(config=config)
+        super(Hpe3ParBaseAction, self).__init__(config=config)
         self.client = self._get_client()
 
     def _get_client(self):
@@ -34,10 +34,13 @@ class HpeNimbleBaseAction(Action):
         username = self.config['username']
         password = self.config['password']
 
-        # URL to create an organization.
-        client = NimOSClient(ipaddress,username,password)
+        url = "https://%s:8080/api/v1" % (ipaddress)
 
-        return client
+        # URL to create an organization.
+        creds = client.HPE3ParClient(url)
+        creds.login(username, password)
+
+        return creds
 
 class MongoBaseAction(Action):
     def __init__(self,config):

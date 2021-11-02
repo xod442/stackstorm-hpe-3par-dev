@@ -19,31 +19,29 @@
 # __email__ = "rick.a.kauffman@hpe.com"
 
 
-from lib.actions import HpeNimbleBaseAction
+from lib.actions import Hpe3ParBaseAction
 from datetime import datetime
 
-class Alarms(HpeNimbleBaseAction):
+class Tasks(Hpe3ParBaseAction):
     def run(self):
         # Connect to the system
-        api = self.client
+        api = self.creds
         # Setup some variables
-        alarm_data = []
+        task_data = []
         # Get the arrays
-        alarms = api.alarms.list()
+        allTasks = api.getAllTasks()
 
-        for a in alarms:
+        for a in allTasks:
 
-            entry = api.alarms.get(a.attrs['id']).attrs
-
-            time = datetime.fromtimestamp(entry['onset_time']).strftime('%d-%m-%y, %H:%M:%S')
-
-            alarmz = [
-                    entry['status'],
-                    time,
-                    entry['severity'],
-                    entry['category'],
-                    entry['id']
+            task = [
+                    a['id'],
+                    a['type']
+                    a['name']
+                    a['status']
+                    a['startTime']
+                    a['finishTime']
+                    a['user']
                     ]
 
-            alarm_data.append(alarmz)
-        return alarm_data
+            task_data.append(task)
+        return task_data
