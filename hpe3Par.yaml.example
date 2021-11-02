@@ -1,6 +1,6 @@
 ---
-ipaddress: "172.18.1.66"
-username: "Administrator"
-password: "Ch@ng3Me!"
+ipaddress: "10.132.0.40"
+username: "apiaccess"
+password: "siesta3"
 dbuser: "appUser"
 dbpass: 'passwordForAppUser'
