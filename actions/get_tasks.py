@@ -24,24 +24,9 @@ from datetime import datetime
 
 class Tasks(Hpe3ParBaseAction):
     def run(self):
-        # Connect to the system
-        api = self.creds
-        # Setup some variables
-        task_data = []
-        # Get the arrays
+        # Get the tasks
         allTasks = api.getAllTasks()
 
-        for a in allTasks:
+        tasks = allTasks['members']
 
-            task = [
-                    a['id'],
-                    a['type']
-                    a['name']
-                    a['status']
-                    a['startTime']
-                    a['finishTime']
-                    a['user']
-                    ]
-
-            task_data.append(task)
-        return task_data
+        return tasks

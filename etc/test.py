@@ -29,16 +29,28 @@ cl.login("apiaccess", "siesta3")
 
 #cl.createVolume(testVolName, testCPGName, 2048, "foo")
 
-volumes = cl.getVolumes()
-wsapi_version = cl.getWsApiVersion()
-tasks = cl.getAllTasks()
+#volumes = cl.getVolumes()
+#wsapi_version = cl.getWsApiVersion()
+#tasks = cl.getAllTasks()
 
+task_data = []
+# Get the arrays
+allTasks = cl.getAllTasks()
 
-print(volumes['members'][0]['name'])
-print('------------------------------')
-print(wsapi_version)
-print(tasks['members'])
+#print(type(allTasks))
 
-for t in tasks['members']:
-    print(t)
-    print('-------------------------------------------------------')
+print(allTasks['members'])
+print(len(allTasks['members']))
+
+for a in allTasks['members']:
+    task = [
+            a['id'],
+            a['type'],
+            a['name'],
+            a['status'],
+            a['startTime'],
+            a['finishTime'],
+            a['user']
+            ]
+    task_data.append(task)
+print(task_data)
