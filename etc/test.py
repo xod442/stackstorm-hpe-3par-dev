@@ -19,9 +19,12 @@ from hpe3parclient import client, exceptions
 username = "apiaccess"
 password = "siesta3"
 
-testVolName = "API-TEST-VOLUME"
-testSNAPName = testVolName+"SNAP"
-testCPGName = "TEST-CPG-NAME"
+name = "API-TEST-VOLUME-X"
+#testSNAPName = testVolName+"SNAP"
+cpgName = "SSD_r1"
+size = 1000
+
+print(cpgName)
 
 cl = client.HPE3ParClient("https://10.132.0.40:8080/api/v1")
 
@@ -33,15 +36,27 @@ cl.login("apiaccess", "siesta3")
 #wsapi_version = cl.getWsApiVersion()
 #tasks = cl.getAllTasks()
 
-task_data = []
+
 # Get the arrays
-allTasks = cl.getAllTasks()
+allTasks = cl.createVolume(name, cpgName, size)
+print('--------------------1---------------------------------')
+print(allTasks)
+# Get the arrays
+allTasks = cl.getVolumes()
+print('--------------------2---------------------------------')
+print(allTasks)
+# Get the arrays
+allTasks = cl.deleteVolume(name)
+print('---------------------3--------------------------------')
+print(allTasks)
+# Get the arrays
+allTasks = cl.getVolume(name)
+print('-----------------------4------------------------------')
+print(allTasks)
 
-#print(type(allTasks))
-
-print(allTasks['members'])
-print(len(allTasks['members']))
-
+#print(allTasks['members'])
+#print(len(allTasks['members']))
+"""
 for a in allTasks['members']:
     task = [
             a['id'],
@@ -54,3 +69,4 @@ for a in allTasks['members']:
             ]
     task_data.append(task)
 print(task_data)
+"""
