@@ -32,11 +32,13 @@ cl.login("apiaccess", "siesta3")
 
 #cl.createVolume(testVolName, testCPGName, 2048, "foo")
 
-#volumes = cl.getVolumes()
+cpgs = cl.getCPGs()
 #wsapi_version = cl.getWsApiVersion()
 #tasks = cl.getAllTasks()
 
+print(cpgs)
 
+"""
 # Get the arrays
 allTasks = cl.createVolume(name, cpgName, size)
 print('--------------------1---------------------------------')
@@ -56,7 +58,7 @@ print(allTasks)
 
 #print(allTasks['members'])
 #print(len(allTasks['members']))
-"""
+
 for a in allTasks['members']:
     task = [
             a['id'],
